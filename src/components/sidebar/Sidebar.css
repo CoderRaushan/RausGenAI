@@ -1,25 +1,68 @@
-.sidebar
-{
+/* Sidebar container */
+.sidebar {
     min-height: 100vh;
-    display:inline-flex;
+    display: inline-flex;
     flex-direction: column;
     justify-content: space-between;
     background-color: #f0f4f9;
     padding: 25px 15px;
-}
-
-.sidebar img 
-{
+    position: relative; /* Update this to manage overlay */
+    transition: transform 0.3s ease; /* Smooth slide-in/out */
+  }
+  
+  /* For mobile screens: Hide sidebar by default */
+  @media (max-width: 658px) 
+  {
+    .sidebar {
+      display: block;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 250px;
+      transform: translateX(-100%); /* Sidebar hidden on mobile */
+      z-index: 1000;
+      height: 100vh;
+    }
+    /* Sidebar visible when the mobile menu is active */
+    .sidebar.active {
+      transform: translateX(0);
+    }
+  
+    /* Three-bar menu button for mobile screens */
+    .menu-mobile {
+      width: 25px;
+      position: absolute;
+      top: 29px;
+      left: 20px;
+      cursor: pointer;
+      z-index: 1100;
+    }
+  
+    /* Overlay when the sidebar is open */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 900;
+    }
+    .sidebar .menu 
+    {
+        visibility: hidden;
+    }
+  }
+  
+  .sidebar img {
     width: 18px;
-}
-.sidebar .menu
-{
+  }
+  .sidebar .menu {
     display: block;
     margin-left: 10px;
     cursor: pointer;
-}
-.sidebar .new-chat
-{
+  }
+  .sidebar .new-chat {
     margin-top: 50px;
     display: inline-flex;
     align-items: center;
@@ -30,20 +73,17 @@
     font-size: 14px;
     color: grey;
     cursor: pointer;
-}
-.sidebar .recent
-{
+  }
+  .sidebar .recent {
     display: flex;
     flex-direction: column;
     animation: fadeIn 1.5s;
-}
-.sidebar .recent-title
-{
+  }
+  .sidebar .recent-title {
     margin-top: 30px;
     margin-bottom: 20px;
-}
-.sidebar .recent-entry
-{
+  }
+  .sidebar .recent-entry {
     display: flex;
     align-items: start;
     gap: 10px;
@@ -52,24 +92,22 @@
     border-radius: 40px;
     color: #282828;
     cursor: pointer;
-}
-.sidebar .recent-entry:hover
-{
+  }
+  .sidebar .recent-entry:hover {
     background-color: #e2e6eb;
-}
-.sidebar .buttom
-{
- display: flex;
- flex-direction: column;
-}
-.sidebar .buttom-item
-{
+  }
+  .sidebar .bottom {
+    display: flex;
+    flex-direction: column;
+  }
+  .sidebar .bottom-item {
     padding-right: 10px;
-}
-@media(max-width:658px)
-{
-    .sidebar
-    {
-        display: none;
+  }
+  
+  /* Sidebar menu closed on large screens */
+  @media (min-width: 659px) {
+    .menu-mobile {
+      display: none;
     }
-}
+  }
+  

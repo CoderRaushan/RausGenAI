@@ -5,6 +5,11 @@ import { Context } from '../../context/Context';
 const Main = () => {
 
     const {onSent,recentPrompt,showResult,loading,resultData,setInput,input}=useContext(Context);
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter' && input) {
+            onSent(); 
+        }
+    };
     return (
         <div className='main'>
             <div className="nav">
@@ -70,7 +75,7 @@ const Main = () => {
                 
                 <div className="main-bottom">
                     <div className="search-box">
-                        <input onChange={(e)=>setInput(e.target.value)} value={input} type="text" name="inp" id="inp" placeholder='Enter a prompt here' /> 
+                        <input onKeyDown={handleKeyDown} onChange={(e)=>setInput(e.target.value)} value={input} type="text" name="inp" id="inp" placeholder='Enter a prompt here' /> 
                         <div>
                             <img src={assets.gallery_icon} alt="gallery_icon" />
                             <img src={assets.mic_icon} alt="mic_icon" />
